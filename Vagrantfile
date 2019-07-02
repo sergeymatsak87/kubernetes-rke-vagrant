@@ -4,6 +4,7 @@
 VAGRANTFILE_API_VERSION = '2'.freeze
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.hostname = "kubernetes"
   config.vm.box = 'ubuntu/xenial64'
   config.ssh.forward_agent = true
   config.vm.synced_folder 'etc',
@@ -19,6 +20,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # config.vm.network 'forwarded_port', guest: 6443, host: 6443
 
   config.vm.provider :virtualbox do |vb|
+    vb.name = "kube-host"
     # Don't boot with headless mode
     #   vb.gui = true
 
